@@ -1,298 +1,250 @@
 # AI-Agent-Dacon-2026
 
 [![Competition](https://img.shields.io/badge/DACON-AI%20Agent%20Action%20Prediction-blue)](https://dacon.io/competitions/official/236694/overview/description)
-![Status](https://img.shields.io/badge/status-planned-lightgrey)
+![Status](https://img.shields.io/badge/status-team%20workflow%20setup-lightgrey)
 ![Python](https://img.shields.io/badge/python-3.10%2B-3776AB)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-DACON AI Agent 행동 예측 대회를 시작하기 위한 팀 프로젝트 저장소입니다.
+DACON AI Agent Action Prediction 대회를 위한 팀 공식 저장소입니다.
 
-이 프로젝트는 AI 코딩 에이전트가 사용자와 대화하며 작업하는 중, 다음에 어떤 행동을 해야 하는지 14개 클래스 중 하나로 예측하는 문제를 다룹니다.
+이 저장소의 목표는 단순합니다.
 
-현재 이 저장소는 **대회 시작 전 초기 세팅 단계**입니다. 아직 EDA, 모델 학습, 검증 실험, 리더보드 제출은 진행하지 않았습니다. 대신 팀이 바로 작업을 시작할 수 있도록 폴더 구조, 문서 템플릿, 실험 기록 양식, 코드 작성 위치를 먼저 만들어두었습니다.
+> 팀원들은 각자 자유롭게 실험하고, Main Repository에는 다른 팀원이 이해할 수 있는 변경사항과 좋은 결과만 Pull Request로 올립니다.
 
-> 현재 단계: 프로젝트 초기 구조 설계 완료. 실험과 모델링은 아직 진행 전입니다.
+현재 이 저장소는 **팀 협업 구조를 세팅한 단계**입니다. 아직 확정된 최고 모델, 검증 점수, 제출 점수는 없습니다.
 
 ## 목차
 
-- [프로젝트 개요](#프로젝트-개요)
-- [문제 정의](#문제-정의)
-- [무엇을 만들 것인가](#무엇을-만들-것인가)
-- [진행 흐름](#진행-흐름)
-- [기술 스택](#기술-스택)
-- [저장소 구조](#저장소-구조)
-- [폴더 설명](#폴더-설명)
-- [시작 방법](#시작-방법)
-- [로드맵](#로드맵)
-- [실험 로그](#실험-로그)
-- [팀](#팀)
-- [포트폴리오 가치](#포트폴리오-가치)
+- [이 저장소는 무엇인가](#이-저장소는-무엇인가)
+- [팀 운영 방식](#팀-운영-방식)
+- [개인 Repository 사용 방식](#개인-repository-사용-방식)
+- [폴더 구조](#폴더-구조)
+- [팀원이 작업하는 순서](#팀원이-작업하는-순서)
+- [실험 기록 방식](#실험-기록-방식)
+- [PR 작성 방식](#pr-작성-방식)
+- [매일 Best Model merge 방식](#매일-best-model-merge-방식)
+- [팀원에게 공유할 짧은 안내문](#팀원에게-공유할-짧은-안내문)
 
-## 프로젝트 개요
+## 이 저장소는 무엇인가
 
-| 항목 | 내용 |
+이 저장소는 팀의 공식 기준 저장소입니다.
+
+들어오는 내용:
+
+- 팀이 같이 사용할 코드
+- 의미 있는 실험 결과
+- 제출 파일 기록
+- 매일 best model 판단에 필요한 정보
+- 팀원이 이해할 수 있는 PR 설명
+
+들어오면 안 되는 내용:
+
+- 개인 실험 중간 산출물
+- 설명 없는 코드
+- 대용량 원본 데이터
+- 큰 모델 파일
+- 본인 컴퓨터에서만 되는 임시 코드
+
+## 팀 운영 방식
+
+브랜치는 아래처럼 사용합니다.
+
+| 브랜치 | 역할 |
 | --- | --- |
-| 대회 | DACON AI Agent 행동 예측 |
-| 문제 유형 | 다중 클래스 분류 |
-| 예측 대상 | 14개 에이전트 action 클래스 |
-| 학습 데이터 | 70,000개 샘플 |
-| 평가 데이터 | 비공개 30,000개 샘플 |
-| 주요 입력 | 세션 메타데이터, 이전 대화/행동 기록, 현재 사용자 발화 |
-| 제출 형식 | `id,action` CSV |
-| 현재 상태 | 초기 템플릿 구축 완료 / 실험 전 |
+| `main` | 팀 공식 안정 브랜치입니다. 매일 가장 좋은 모델 또는 팀 공통 변경만 들어옵니다. |
+| `experiment/*` | 실험용 브랜치입니다. 예: `experiment/EXP001-baseline` |
+| `feature/*` | 기능 개발 브랜치입니다. 예: `feature/data-loader` |
+| `docs/*` | 문서 수정 브랜치입니다. 예: `docs/update-readme` |
+| `fix/*` | 버그 수정 브랜치입니다. 예: `fix/submission-format` |
 
-이 대회는 AI 코딩 에이전트가 파일을 읽을지, 검색할지, 코드를 수정할지, 테스트를 실행할지, 사용자에게 질문할지 같은 의사결정을 데이터 기반으로 예측하는 문제입니다.
+중요 규칙:
 
-현재 저장소의 역할은 다음과 같습니다.
+- `main`에 직접 push하지 않습니다.
+- 작업은 개인 레포 또는 새 브랜치에서 합니다.
+- Main Repository에는 PR로 올립니다.
+- PR에는 직접 요약 또는 AI 요약을 붙입니다.
 
-- 대회 데이터를 정리할 위치를 정합니다.
-- EDA와 오류 분석을 어떤 순서로 진행할지 정리합니다.
-- 베이스라인 코드가 들어갈 기본 모듈 위치를 만듭니다.
-- 실험 결과를 매번 같은 형식으로 기록할 수 있게 합니다.
-- 대회가 끝난 뒤에도 포트폴리오로 설명 가능한 문서 구조를 유지합니다.
+## 개인 Repository 사용 방식
 
-## 문제 정의
+팀원 개인 레포는 자유 실험 공간입니다.
 
-주어진 에이전트 세션의 특정 시점 상태를 보고, 에이전트가 다음에 수행할 행동을 예측합니다.
+예상 레포 이름:
 
-### 입력
-
-- `session_meta`: 사용자 등급, 선호 언어, 남은 토큰 예산, 현재 턴, 세션 경과 시간, 작업공간 상태
-- `history`: 이전 사용자 발화와 에이전트 행동 기록
-- `current_prompt`: 현재 사용자 발화
-
-### 출력
-
-아래 14개 클래스 중 하나를 예측합니다.
-
-| 그룹 | 클래스 |
+| 팀원 | 개인 레포 이름 예시 |
 | --- | --- |
-| 파일/작업공간 탐색 | `read_file`, `grep_search`, `list_directory`, `glob_pattern` |
-| 파일 수정 | `edit_file`, `write_file`, `apply_patch` |
-| 실행/검증 | `run_bash`, `run_tests`, `lint_or_typecheck` |
-| 추론/응답 | `ask_user`, `plan_task`, `web_search`, `respond_only` |
+| HAK | `AI-Agent-Dacon-2026-HAK` |
+| SEOK | `AI-Agent-Dacon-2026-SEOK` |
+| JUN | `AI-Agent-Dacon-2026-JUN` |
+| HEUN | `AI-Agent-Dacon-2026-HEUN` |
+| YOUNG | `AI-Agent-Dacon-2026-YOUNG` |
 
-## 무엇을 만들 것인가
+개인 레포에서는 자유롭게 해도 됩니다.
 
-이 저장소에서는 앞으로 다음 산출물을 구축합니다.
+- 실패한 실험
+- 임시 노트북
+- 여러 모델 테스트
+- 정리 전 코드
 
-- 재현 가능한 데이터 로딩 및 전처리 파이프라인
-- EDA, 오류 분석, 피처 엔지니어링 노트북
-- 베이스라인 및 개선 모델 학습 코드
-- 실험 기록 템플릿과 점수 추적표
-- 대회 분석, 데이터 분석, 모델 최적화 문서
-- 최종 포트폴리오용 보고서
+Main Repository에 올릴 때만 팀원이 이해할 수 있게 정리합니다.
 
-아직 리더보드 점수나 검증 점수는 기록하지 않았습니다. 실제 실험 이후 측정된 값만 추가합니다.
-
-## 진행 흐름
-
-```mermaid
-flowchart LR
-    A["데이터 확인"] --> B["EDA"]
-    B --> C["베이스라인"]
-    C --> D["피처 엔지니어링"]
-    D --> E["모델 최적화"]
-    E --> F["오류 분석"]
-    F --> D
-    E --> G["제출"]
-    G --> H["최종 보고서"]
-```
-
-## 기술 스택
-
-| 영역 | 도구 |
-| --- | --- |
-| 언어 | Python |
-| 데이터 처리 | pandas, numpy |
-| 모델링 | scikit-learn, LightGBM, XGBoost, CatBoost, Transformers |
-| 실험 | Jupyter, Markdown experiment logs |
-| 시각화 | matplotlib, seaborn |
-| 품질 관리 | ruff, pytest |
-| 협업 | Git, GitHub, GitHub Pages-ready Markdown |
-
-## 저장소 구조
+## 폴더 구조
 
 ```text
 AI-Agent-Dacon-2026/
 |-- README.md
+|-- CONTRIBUTING.md
 |-- requirements.txt
+|-- .github/
+|   |-- PULL_REQUEST_TEMPLATE.md
+|   `-- ISSUE_TEMPLATE/
+|       |-- bug_report.md
+|       |-- experiment.md
+|       |-- analysis.md
+|       `-- todo.md
 |-- configs/
-|   `-- default.yaml
+|   |-- README.md
+|   `-- exp_template.yaml
 |-- data/
-|   |-- README.md
-|   `-- .gitkeep
-|-- docs/
-|   |-- 01_Project_Overview.md
-|   |-- 02_AI_Agent.md
-|   |-- 03_Competition_Analysis.md
-|   |-- 04_Data_Analysis.md
-|   |-- 05_Baseline.md
-|   |-- 06_Error_Analysis.md
-|   |-- 07_Feature_Engineering.md
-|   |-- 08_Model_Optimization.md
-|   |-- 09_Experiment_Log.md
-|   `-- 10_Final_Report.md
-|-- notebooks/
-|   |-- README.md
-|   |-- EDA.ipynb
-|   |-- Error_Analysis.ipynb
-|   `-- Feature_Engineering.ipynb
+|   `-- README.md
 |-- experiments/
-|   |-- exp01_baseline.md
-|   |-- exp02_feature_engineering.md
-|   `-- exp03_model_change.md
-|-- src/
 |   |-- README.md
-|   |-- __init__.py
-|   |-- data/
-|   |   `-- load_data.py
-|   |-- evaluation/
-|   |   `-- metrics.py
-|   |-- features/
-|   |   `-- build_features.py
-|   |-- inference/
-|   |   `-- predict.py
-|   |-- models/
-|   |-- training/
-|   |   `-- train_baseline.py
-|   `-- utils/
-|       `-- config.py
-|-- results/
+|   `-- experiment_log.csv
+|-- scripts/
 |   |-- README.md
-|   |-- figures/
-|   `-- submissions/
+|   |-- run_train.py
+|   |-- run_predict.py
+|   |-- make_submission.py
+|   `-- register_experiment.py
+|-- submissions/
+|   |-- README.md
+|   `-- submission_log.csv
+|-- reports/
+|   |-- README.md
+|   `-- daily/
+|       |-- README.md
+|       `-- YYYY-MM-DD_template.md
 |-- models/
 |   `-- README.md
 `-- logs/
     `-- README.md
 ```
 
-## 폴더 설명
+## 각 폴더가 하는 일
 
-각 폴더는 아래 목적을 가집니다. 아직 실제 실험 산출물은 없으며, 앞으로 작업하면서 채워 넣는 구조입니다.
+| 폴더 | 역할 |
+| --- | --- |
+| `.github/` | PR 템플릿과 Issue 템플릿을 저장합니다. GitHub에서 PR/Issue를 만들 때 자동으로 양식이 뜹니다. |
+| `configs/` | 실험 설정 파일을 저장합니다. 어떤 모델, 어떤 피처, 어떤 seed를 썼는지 남기는 곳입니다. |
+| `data/` | 대회 데이터를 로컬에서 둘 위치를 설명합니다. 원본 데이터는 GitHub에 올리지 않습니다. |
+| `experiments/` | 중요한 실험 결과를 한 줄씩 기록합니다. 긴 보고서 대신 `experiment_log.csv`를 사용합니다. |
+| `scripts/` | 팀원이 실행할 명령어 파일을 둡니다. 현재는 학습/예측/제출/실험기록용 기본 틀입니다. |
+| `submissions/` | DACON 제출 기록을 관리합니다. 어떤 실험에서 나온 제출인지 추적합니다. |
+| `reports/` | 매일 best model을 정할 때 필요한 짧은 일일 기록을 남깁니다. |
+| `models/` | 모델 파일 관리 위치입니다. 큰 모델 파일은 GitHub에 올리지 않고 설명만 남깁니다. |
+| `logs/` | 실행 로그 위치입니다. 긴 로그는 올리지 않고 중요한 내용만 요약합니다. |
 
-| 경로 | 설명 | 현재 상태 |
-| --- | --- | --- |
-| `configs/` | 학습/추론 설정값을 관리합니다. seed, split, feature, model parameter 등을 한 곳에서 관리하기 위한 위치입니다. | 기본 설정 템플릿만 있음 |
-| `data/` | DACON에서 받은 원본 데이터와 전처리 데이터를 둘 위치입니다. 대용량 원본 데이터는 Git에 올리지 않고 로컬에서 관리합니다. | 설명 파일만 있음 |
-| `docs/` | 프로젝트 이해, 대회 분석, 데이터 분석, 모델링 전략, 최종 보고서를 작성하는 기술 문서 공간입니다. | 문서 템플릿 있음 |
-| `notebooks/` | EDA, 오류 분석, 피처 실험을 빠르게 확인하는 Jupyter 노트북 공간입니다. | 빈 분석 노트북 템플릿 있음 |
-| `experiments/` | 실험 목적, 변경 사항, 검증 점수, 제출 점수, 배운 점을 기록하는 공간입니다. | 실험 기록 양식 있음 |
-| `src/` | 실제 재사용 가능한 Python 코드가 들어가는 공간입니다. 노트북에서 검증한 로직을 이곳으로 옮깁니다. | 코드 뼈대만 있음 |
-| `results/` | 그래프, confusion matrix, 제출 파일 등을 저장합니다. | placeholder 이미지만 있음 |
-| `models/` | 학습된 모델 파일을 로컬에 저장하는 위치입니다. 큰 모델 파일은 Git에 올리지 않습니다. | 설명 파일만 있음 |
-| `logs/` | 학습 로그, 실험 로그, 실행 로그를 저장합니다. | 설명 파일만 있음 |
+## 팀원이 작업하는 순서
 
-## 시작 방법
-
-아래 순서는 앞으로 팀이 실제 작업을 시작할 때의 권장 흐름입니다.
-
-1. DACON에서 받은 데이터를 `data/raw/`에 둡니다.
-2. [데이터 분석 문서](docs/04_Data_Analysis.md)와 [EDA 노트북](notebooks/EDA.ipynb)을 채우며 데이터 구조를 확인합니다.
-3. [베이스라인 문서](docs/05_Baseline.md)를 기준으로 첫 baseline 코드를 구현합니다.
-4. 첫 실험 결과를 [exp01_baseline](experiments/exp01_baseline.md)에 기록합니다.
-5. 오류 분석 결과를 [오류 분석 문서](docs/06_Error_Analysis.md)에 정리합니다.
-6. 피처 엔지니어링과 모델 변경 실험을 반복하며 `experiments/`에 누적합니다.
-
-현재 명령어는 실행 가능한 최종 파이프라인이 아니라, 앞으로 구현할 기준 명령의 형태입니다.
+처음 한 번:
 
 ```bash
+git clone https://github.com/Kim3719/AI-Agent-Dacon-2026.git
+cd AI-Agent-Dacon-2026
 pip install -r requirements.txt
-python -m src.training.train_baseline --config configs/default.yaml
-python -m src.inference.predict --config configs/default.yaml
 ```
 
-## 문서 안내
+작업할 때:
 
-| 문서 | 목적 |
-| --- | --- |
-| [프로젝트 개요](docs/01_Project_Overview.md) | 프로젝트 목표와 범위 정리 |
-| [AI Agent 이해](docs/02_AI_Agent.md) | 에이전트 action 클래스와 의사결정 맥락 |
-| [대회 분석](docs/03_Competition_Analysis.md) | 규칙, 데이터, 제출 형식 정리 |
-| [데이터 분석](docs/04_Data_Analysis.md) | 데이터 구조와 EDA 계획 |
-| [베이스라인](docs/05_Baseline.md) | 베이스라인 설계와 재현 계획 |
-| [오류 분석](docs/06_Error_Analysis.md) | 모델 실패 사례 분석 프레임 |
-| [피처 엔지니어링](docs/07_Feature_Engineering.md) | 후보 피처와 실험 추적 |
-| [모델 최적화](docs/08_Model_Optimization.md) | 모델 비교와 튜닝 계획 |
-| [실험 로그](docs/09_Experiment_Log.md) | 실험 기록 인덱스 |
-| [최종 보고서](docs/10_Final_Report.md) | 대회 종료 후 보고서 템플릿 |
+```bash
+git checkout main
+git pull origin main
+git checkout -b experiment/EXP001-baseline
+```
 
-## 노트북
+작업 후:
 
-| 노트북 | 상태 | 설명 |
-| --- | --- | --- |
-| [EDA.ipynb](notebooks/EDA.ipynb) | 예정 | 데이터 분포와 기본 통계 분석 |
-| [Error_Analysis.ipynb](notebooks/Error_Analysis.ipynb) | 예정 | 혼동 행렬과 오답 패턴 분석 |
-| [Feature_Engineering.ipynb](notebooks/Feature_Engineering.ipynb) | 예정 | 피처 설계와 검증 |
+```bash
+git status
+git add .
+git commit -m "exp: add EXP001 baseline summary"
+git push origin experiment/EXP001-baseline
+```
 
-## 결과물
+그다음 GitHub에서 PR을 만듭니다.
 
-그래프, 분석 이미지, 제출 파일은 `results/` 아래에 저장합니다.
+## 실험 기록 방식
 
-예정 이미지:
+중요한 실험은 [experiments/experiment_log.csv](experiments/experiment_log.csv)에 한 줄로 기록합니다.
 
-![Action distribution placeholder](results/figures/action_distribution.svg)
+긴 문서를 매번 쓰지 않아도 됩니다.
 
-![Confusion matrix placeholder](results/figures/confusion_matrix.svg)
+기록 예시:
 
-## 로드맵
+```csv
+EXP001,2026-07-02,HAK,experiment/EXP001-baseline,TF-IDF LR,current_prompt,0.7123,0.8012,TBD,첫 baseline 실험,TBD
+```
 
-진행률: `10%`
+실험 기록을 자동으로 추가하고 싶으면 아래 명령을 사용할 수 있습니다.
 
-| 단계 | 상태 | 산출물 |
-| --- | --- | --- |
-| 저장소 구조 설계 | 완료 | 폴더 구조와 문서 템플릿 |
-| 대회 규칙 확인 | 예정 | 규칙 체크리스트 |
-| EDA | 예정 | 데이터 통계와 시각화 |
-| 베이스라인 | 예정 | 재현 가능한 첫 모델 |
-| 피처 엔지니어링 | 예정 | 피처 조합별 성능 비교 |
-| 모델 최적화 | 예정 | 튜닝된 모델 후보 |
-| 오류 분석 | 예정 | 오답 유형 정리 |
-| 최종 제출 | 예정 | 제출 파일 및 코드 패키지 |
-| 최종 보고서 | 예정 | 포트폴리오용 결과 보고서 |
+```bash
+python scripts/register_experiment.py --experiment-id EXP001 --date 2026-07-02 --owner HAK --branch experiment/EXP001-baseline --model "TF-IDF LR" --features current_prompt --validation-f1 TBD --accuracy TBD --public-score TBD --summary "첫 baseline 실험"
+```
 
-체크리스트:
+## PR 작성 방식
 
-- [x] 저장소 구조 생성
-- [x] 문서 템플릿 추가
-- [x] 실험 템플릿 추가
-- [x] 기본 노트북 및 코드 뼈대 추가
-- [ ] 공식 규칙과 평가 지표 확인
-- [ ] 베이스라인 파이프라인 구현
-- [ ] 첫 검증 실험 실행
-- [ ] 첫 제출 파일 생성
-- [ ] 최종 보고서 작성
+PR에는 긴 보고서를 쓰지 않습니다.
 
-## 실험 로그
+대신 아래 중 하나를 적습니다.
 
-| ID | 제목 | 상태 | Validation Score | Public Score | 링크 |
-| --- | --- | --- | ---: | ---: | --- |
-| exp01 | 베이스라인 | 예정 | TBD | TBD | [exp01_baseline](experiments/exp01_baseline.md) |
-| exp02 | 피처 엔지니어링 | 예정 | TBD | TBD | [exp02_feature_engineering](experiments/exp02_feature_engineering.md) |
-| exp03 | 모델 변경 | 예정 | TBD | TBD | [exp03_model_change](experiments/exp03_model_change.md) |
+- 본인이 직접 쓴 변경 요약
+- AI에게 변경사항을 요약시켜 받은 내용
 
-## 팀
+AI에게 요약을 부탁할 때는 이렇게 물어보면 됩니다.
 
-| 역할 | 팀원 | 담당 |
-| --- | --- | --- |
-| 팀원 | TBD | 데이터 분석 |
-| 팀원 | TBD | 모델링 |
-| 팀원 | TBD | 실험 관리 |
-| 팀원 | TBD | 문서화 |
+```text
+아래 git diff를 보고 PR에 넣을 변경 요약을 한국어로 짧게 작성해줘.
+팀원이 이해할 수 있게 무엇을 바꿨고, 왜 바꿨고, 실행 방법이 있는지 정리해줘.
+```
 
-## 포트폴리오 가치
+PR 템플릿은 [.github/PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md)에 있습니다.
 
-이 저장소는 단순한 제출 코드가 아니라 다음 역량을 보여주는 포트폴리오로 관리할 예정입니다.
+## 매일 Best Model merge 방식
 
-- AI Agent 행동 예측 문제 정의
-- 재현 가능한 머신러닝 워크플로우
-- 실험 중심의 개선 과정
-- 기술 문서화와 결과 보고
-- 오류 분석 기반 모델 개선
-- GitHub Pages에서도 읽기 좋은 문서 구조
+매일 마지막에 팀이 PR과 실험 기록을 보고 하나를 정합니다.
 
-## 참고 링크
+main에 merge 가능한 것:
 
-- [DACON 대회 설명](https://dacon.io/competitions/official/236694/overview/description)
-- [DACON 대회 규칙](https://dacon.io/competitions/official/236694/overview/rules)
+- 오늘 기준 validation score가 가장 좋은 모델
+- public score가 개선된 모델
+- 점수는 비슷하지만 더 안정적이고 재현 쉬운 모델
+- 제출 형식 오류 같은 중요한 수정
+
+main에 merge하지 않는 것:
+
+- 설명 없는 모델 변경
+- 실행 방법이 없는 코드
+- 점수가 불명확한 실험
+- 개인 실험 중간 결과
+
+하루 기록은 [reports/daily/YYYY-MM-DD_template.md](reports/daily/YYYY-MM-DD_template.md)를 복사해서 작성합니다.
+
+## 팀원에게 공유할 짧은 안내문
+
+아래 문장을 그대로 팀원에게 보내면 됩니다.
+
+```text
+이 저장소는 팀 공식 Main Repository입니다.
+각자 개인 레포에서는 자유롭게 실험해도 됩니다.
+하지만 Main Repository에는 좋은 결과나 팀이 같이 쓸 코드만 PR로 올려주세요.
+
+작업할 때는 main에 직접 push하지 말고 새 브랜치를 만들어주세요.
+예: experiment/EXP001-baseline, feature/data-loader
+
+PR을 만들 때는 무엇을 바꿨는지 짧게 적어주세요.
+직접 적어도 되고, AI에게 변경사항을 요약시켜 붙여넣어도 됩니다.
+
+실험 결과가 있으면 experiments/experiment_log.csv에 한 줄로 기록해주세요.
+DACON 제출을 했다면 submissions/submission_log.csv에도 기록해주세요.
+
+매일 팀이 PR과 점수를 확인해서 가장 좋은 모델만 main에 merge합니다.
+```

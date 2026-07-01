@@ -1,0 +1,44 @@
+# 실험 설정 템플릿입니다.
+# 새 실험을 만들 때 이 파일을 복사해서 사용하세요.
+#
+# 예:
+# configs/EXP001_baseline.yaml
+# configs/EXP002_lightgbm.yaml
+
+experiment:
+  # 팀 전체에서 사용하는 실험 번호입니다.
+  # 아직 번호가 없으면 PR에서 논의 후 정합니다.
+  id: EXP000
+
+  # 실험을 진행한 사람 이름입니다.
+  owner: TBD
+
+  # 실험 목적을 한 줄로 적습니다.
+  description: TBD
+
+  # 결과 재현을 위한 seed입니다.
+  seed: 42
+
+data:
+  # 원본 데이터는 GitHub에 올리지 않고 로컬 data/raw 아래에 둡니다.
+  train_jsonl: data/raw/train.jsonl
+  train_labels: data/raw/train_labels.csv
+  test_jsonl: data/raw/test.jsonl
+  sample_submission: data/raw/sample_submission.csv
+
+features:
+  # 이번 실험에서 사용할 피처를 적습니다.
+  # 예: current_prompt, history_actions, session_meta
+  use:
+    - current_prompt
+
+model:
+  # 모델 이름과 주요 파라미터를 적습니다.
+  name: TBD
+  params: {}
+
+output:
+  # 결과 파일이 저장될 위치입니다.
+  model_dir: models
+  submission_dir: submissions
+  report_dir: reports/daily

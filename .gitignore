@@ -17,17 +17,15 @@ data/processed/
 models/*
 !models/.gitkeep
 !models/README.md
-results/*
-!results/.gitkeep
-!results/README.md
-!results/figures/
-!results/figures/.gitkeep
-!results/figures/*.svg
-!results/submissions/
-!results/submissions/.gitkeep
 logs/*
 !logs/.gitkeep
 !logs/README.md
+
+# Submission files can be tracked selectively.
+# 제출 로그 CSV와 README는 올리고, 실제 제출 파일은 필요할 때만 올립니다.
+submissions/*.csv
+!submissions/submission_log.csv
+submissions/*.zip
 
 # Notebooks
 .ipynb_checkpoints/

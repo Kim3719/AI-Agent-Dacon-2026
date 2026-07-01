@@ -1,0 +1,2 @@
+experiment_id,date,owner,branch,model,features,validation_f1,accuracy,public_score,summary,pr_url
+EXP000,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,예시 행입니다. 실제 실험이 생기면 EXP001부터 기록합니다.,TBD
