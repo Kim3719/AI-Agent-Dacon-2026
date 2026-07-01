@@ -16,8 +16,10 @@ data/interim/
 data/processed/
 models/*
 !models/.gitkeep
+!models/README.md
 results/*
 !results/.gitkeep
+!results/README.md
 !results/figures/
 !results/figures/.gitkeep
 !results/figures/*.svg
@@ -25,6 +27,7 @@ results/*
 !results/submissions/.gitkeep
 logs/*
 !logs/.gitkeep
+!logs/README.md
 
 # Notebooks
 .ipynb_checkpoints/

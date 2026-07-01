@@ -1,41 +1,47 @@
-# Project Overview
+# 프로젝트 개요
 
-## Purpose
+## 목적
 
-This document summarizes the project direction for the DACON AI Agent action prediction competition.
+DACON AI Agent 행동 예측 대회의 프로젝트 방향과 범위를 정리합니다.
 
-## Competition
+## 이 문서는 무엇인가
 
-- Competition: DACON AI Agent action prediction
-- Task: Predict the next assistant action among 14 predefined classes
-- Input: Session metadata, interaction history, and the current user prompt
-- Output: One action label per sample
-- Status: Planned
+프로젝트의 첫 안내 문서입니다. 팀원이 처음 합류했을 때 이 문서를 보면 “우리가 어떤 문제를 풀고 있고, 어디까지 할 예정인지”를 빠르게 이해할 수 있어야 합니다.
 
-## Why This Matters
+현재는 대회 시작 전 초기 템플릿 단계이므로 실제 실험 결과가 아니라 목표, 범위, 예정 작업을 중심으로 작성합니다.
 
-AI coding agents need to decide when to inspect files, search, edit, run commands, ask questions, or respond directly. This competition frames that decision process as a supervised classification problem.
+## 대회 요약
 
-## Project Goals
+- 대회: DACON AI Agent 행동 예측
+- 과제: AI 코딩 에이전트의 다음 action을 14개 클래스 중 하나로 예측
+- 입력: 세션 메타데이터, 이전 대화/행동 기록, 현재 사용자 발화
+- 출력: 샘플별 action 라벨
+- 현재 상태: 예정
 
-- Build a reliable baseline pipeline
-- Analyze action patterns across metadata, history, and prompts
-- Improve validation performance through feature engineering and model selection
-- Keep a clear experiment trail for collaboration and portfolio review
+## 왜 중요한가
 
-## Scope
+AI 코딩 에이전트는 작업 중에 파일을 읽을지, 검색할지, 코드를 수정할지, 테스트를 실행할지, 사용자에게 질문할지 계속 판단해야 합니다. 이 대회는 그 의사결정을 지도학습 기반의 분류 문제로 다룹니다.
 
-| Area | Status | Notes |
+## 프로젝트 목표
+
+- 재현 가능한 베이스라인 파이프라인 구축
+- 메타데이터, 히스토리, 프롬프트 기반 action 패턴 분석
+- 피처 엔지니어링과 모델 선택을 통한 검증 성능 개선
+- 팀 협업과 포트폴리오 검토가 가능한 실험 기록 유지
+
+## 범위
+
+| 영역 | 상태 | 비고 |
 | --- | --- | --- |
-| Data understanding | Planned | EDA notebook and documentation |
-| Baseline reproduction | Planned | Compare with provided baseline submission |
-| Feature engineering | Planned | Metadata, history, and text features |
-| Model optimization | Planned | Classical ML and transformer-based approaches |
-| Error analysis | Planned | Confusion matrix and mistake review |
-| Final report | Planned | Competition summary and portfolio write-up |
+| 데이터 이해 | 예정 | EDA 노트북과 문서 |
+| 베이스라인 재현 | 예정 | 제공된 baseline submission 참고 |
+| 피처 엔지니어링 | 예정 | 메타데이터, 히스토리, 텍스트 피처 |
+| 모델 최적화 | 예정 | 전통 ML 및 Transformer 기반 접근 |
+| 오류 분석 | 예정 | 혼동 행렬과 오답 사례 분석 |
+| 최종 보고서 | 예정 | 대회 요약과 포트폴리오 정리 |
 
-## Links
+## 링크
 
-- [Competition Rules](https://dacon.io/competitions/official/236694/overview/rules)
-- [Competition Description](https://dacon.io/competitions/official/236694/overview/description)
-- [Main README](../README.md)
+- [대회 규칙](https://dacon.io/competitions/official/236694/overview/rules)
+- [대회 설명](https://dacon.io/competitions/official/236694/overview/description)
+- [README](../README.md)
