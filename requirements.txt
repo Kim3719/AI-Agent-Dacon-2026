@@ -1,0 +1,24 @@
+# Core
+numpy
+pandas
+scikit-learn
+
+# Modeling
+lightgbm
+xgboost
+catboost
+
+# NLP / ML utilities
+transformers
+datasets
+sentence-transformers
+
+# Experimentation
+matplotlib
+seaborn
+jupyter
+tqdm
+
+# Quality
+ruff
+pytest
