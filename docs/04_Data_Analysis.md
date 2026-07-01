@@ -36,9 +36,9 @@ Document dataset structure, distributions, and early insights.
 
 Planned figure slots:
 
-![Action distribution placeholder](../results/figures/action_distribution.png)
+![Action distribution placeholder](../results/figures/action_distribution.svg)
 
-![History length placeholder](../results/figures/history_length_by_action.png)
+![History length placeholder](../results/figures/history_length_by_action.svg)
 
 ## Initial Findings
 

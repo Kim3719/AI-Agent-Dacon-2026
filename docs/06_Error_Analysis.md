@@ -16,7 +16,7 @@ Understand model failures and convert them into actionable improvements.
 
 ## Confusion Matrix
 
-![Confusion matrix placeholder](../results/figures/confusion_matrix.png)
+![Confusion matrix placeholder](../results/figures/confusion_matrix.svg)
 
 ## Error Buckets
 

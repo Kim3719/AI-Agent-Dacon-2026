@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320" role="img" aria-labelledby="title desc">
+  <title id="title">Confusion matrix placeholder</title>
+  <desc id="desc">Placeholder image for future confusion matrix chart.</desc>
+  <rect width="900" height="320" fill="#f6f8fa"/>
+  <rect x="32" y="32" width="836" height="256" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="64" y="82" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#24292f">Confusion Matrix</text>
+  <text x="64" y="116" font-family="Arial, sans-serif" font-size="15" fill="#57606a">TBD after validation predictions are available</text>
+  <g transform="translate(96 138)">
+    <rect width="32" height="32" fill="#dbeafe"/>
+    <rect x="36" width="32" height="32" fill="#bfdbfe"/>
+    <rect x="72" width="32" height="32" fill="#93c5fd"/>
+    <rect x="108" width="32" height="32" fill="#60a5fa"/>
+    <rect y="36" width="32" height="32" fill="#bfdbfe"/>
+    <rect x="36" y="36" width="32" height="32" fill="#3b82f6"/>
+    <rect x="72" y="36" width="32" height="32" fill="#dbeafe"/>
+    <rect x="108" y="36" width="32" height="32" fill="#93c5fd"/>
+    <rect y="72" width="32" height="32" fill="#93c5fd"/>
+    <rect x="36" y="72" width="32" height="32" fill="#dbeafe"/>
+    <rect x="72" y="72" width="32" height="32" fill="#2563eb"/>
+    <rect x="108" y="72" width="32" height="32" fill="#bfdbfe"/>
+    <rect y="108" width="32" height="32" fill="#60a5fa"/>
+    <rect x="36" y="108" width="32" height="32" fill="#93c5fd"/>
+    <rect x="72" y="108" width="32" height="32" fill="#bfdbfe"/>
+    <rect x="108" y="108" width="32" height="32" fill="#1d4ed8"/>
+  </g>
+  <text x="280" y="196" font-family="Arial, sans-serif" font-size="16" fill="#57606a">Replace this placeholder with validation error analysis results.</text>
+</svg>

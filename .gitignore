@@ -18,6 +18,11 @@ models/*
 !models/.gitkeep
 results/*
 !results/.gitkeep
+!results/figures/
+!results/figures/.gitkeep
+!results/figures/*.svg
+!results/submissions/
+!results/submissions/.gitkeep
 logs/*
 !logs/.gitkeep
 

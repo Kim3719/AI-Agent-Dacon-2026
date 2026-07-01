@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320" role="img" aria-labelledby="title desc">
+  <title id="title">Action distribution placeholder</title>
+  <desc id="desc">Placeholder image for future action distribution chart.</desc>
+  <rect width="900" height="320" fill="#f6f8fa"/>
+  <rect x="32" y="32" width="836" height="256" rx="8" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="64" y="82" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#24292f">Action Distribution</text>
+  <text x="64" y="116" font-family="Arial, sans-serif" font-size="15" fill="#57606a">TBD after EDA notebook is executed</text>
+  <rect x="68" y="215" width="70" height="40" fill="#0969da"/>
+  <rect x="158" y="180" width="70" height="75" fill="#54aeff"/>
+  <rect x="248" y="145" width="70" height="110" fill="#0969da"/>
+  <rect x="338" y="198" width="70" height="57" fill="#54aeff"/>
+  <rect x="428" y="160" width="70" height="95" fill="#0969da"/>
+  <rect x="518" y="120" width="70" height="135" fill="#54aeff"/>
+  <rect x="608" y="190" width="70" height="65" fill="#0969da"/>
+  <rect x="698" y="170" width="70" height="85" fill="#54aeff"/>
+  <line x1="64" y1="255" x2="800" y2="255" stroke="#8c959f"/>
+</svg>
