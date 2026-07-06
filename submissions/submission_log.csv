@@ -1,2 +1,6 @@
 submission_id,date,experiment_id,owner,file_name,public_score,memo
 SUB000,TBD,EXP000,TBD,TBD,TBD,예시 행입니다. 실제 제출은 SUB001부터 기록합니다.
+2026-07-03,JUN,EXP-v3-input-redesign,submit_v3.zip,0.7412,v3 단독 첫 제출
+2026-07-04,JUN,EXP-ensemble-mate-v3,submit_int8_ensemble.zip,0.7574,mate+v3 int8앙상블. 가중치 our=0.7
+2026-07-05,JUN,EXP-ensemble-v5,submit_v5_final.zip,0.7588,mate+v3+v5+배수튜닝
+2026-07-06,JUN,EXP-fold-ensemble,submit_fold_final.zip,0.7520,mate+fold0+fold1. fold누수로 하락, 채택 안함
