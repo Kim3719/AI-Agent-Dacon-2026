@@ -1,2 +1,12 @@
 experiment_id,date,owner,branch,model,features,validation_f1,accuracy,public_score,summary,pr_url
 EXP000,TBD,TBD,TBD,TBD,TBD,TBD,TBD,TBD,예시 행입니다. 실제 실험이 생기면 EXP001부터 기록합니다.,TBD
+EXP-v3,2026-07-03,JUN,experiment/EXP-v3-input-redesign,xlm-roberta-base+Focal,prompt+last3+meta+history역순,0.740,TBD,0.7412,truncation으로 잘리던 prompt 앞배치 재설계. v2(0.633) 대비 최대 도약,merged
+EXP-v4,2026-07-03,JUN,experiment/EXP-v4-cnt-feature,v3+세션행동횟수(CNT)텍스트,prompt+last3+CNT+meta+history,0.738,TBD,TBD,세션내 행동횟수 피처 추가. 트랜스포머는 history를 이미 봐서 효과 없음(실패),rejected
+EXP-mdeberta-v1,2026-07-04,JUN,experiment/EXP-mdeberta-v1,mDeBERTa-v3-base+Focal,v3와 동일 입력,0.692,TBD,TBD,LR=1e-5 6ep. LR이 낮아 미완 학습,rejected
+EXP-mdeberta-v2,2026-07-04,JUN,experiment/EXP-mdeberta-v2,mDeBERTa-v3-base+Focal,v3와 동일 입력,0.727,TBD,TBD,LR=2e-5 8ep로 재학습. 단독 개선됐으나 앙상블 기여 +0.0006 무의미,rejected
+EXP-large,2026-07-04,JUN,experiment/EXP-xlmr-large,xlm-roberta-large+Focal,v3와 동일 입력,0.725,TBD,TBD,체급 업했으나 base보다 낮음. 검색/읽기 혼동 그대로(라벨노이즈 방증),rejected
+EXP-v5,2026-07-05,JUN,experiment/EXP-v5-session-feat,v3+세션43차원수치피처(concat),prompt+meta+history+세션비율/직전2원핫,0.730,TBD,TBD,팀원식 수치concat 구조. 단독은 v3보다 낮으나 앙상블에 미세기여(+0.001 split검증됨),merged(ensemble재료)
+EXP-ens-mate-v3,2026-07-04,JUN,experiment/EXP-ensemble-mate-v3,int8(mate+v3),-,0.776,TBD,0.7574,팀원모델+v3 int8앙상블. 리더보드 가중치튜닝(our=0.7),merged
+EXP-ens-mate-v3-v5,2026-07-05,JUN,experiment/EXP-ensemble-v5,int8(mate+v3+v5)+배수튜닝,-,0.784,TBD,0.7588,v5추가+클래스별 확률배수보정. split검증 통과,merged
+EXP-fold5,2026-07-06,JUN,experiment/EXP-v3-5fold,xlm-roberta-base 5-fold,v3와 동일,0.715-0.769(개별),TBD,TBD,StratifiedKFold 5분할. OOF는 0.72로 낮음(fold별 진실값),info
+EXP-ens-fold-leak,2026-07-06,JUN,experiment/EXP-fold-ensemble,int8(mate+fold0+fold1),-,0.7797(val h2),0.7520,fold분할과 평가val 인덱스가 겹쳐 누수. val 검증 통과했으나 리더보드 하락,rejected-leak
