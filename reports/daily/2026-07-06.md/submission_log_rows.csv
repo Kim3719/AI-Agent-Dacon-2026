@@ -1,0 +1,5 @@
+date,owner,experiment_id,zip_name,public_score,note
+2026-07-03,[본인이름],EXP-v3-input-redesign,submit_v3.zip,0.7412,v3 단독 첫 제출
+2026-07-04,[본인이름],EXP-ensemble-mate-v3,submit_int8_ensemble.zip,0.7574,mate+v3 int8앙상블. 가중치 our=0.7 (0.3->0.7574->0.7495 튜닝과정 거침)
+2026-07-05,[본인이름],EXP-ensemble-v5,submit_v5_final.zip,0.7588,mate+v3+v5+배수튜닝. 현재 팀 최고
+2026-07-06,[본인이름],EXP-fold-ensemble,submit_fold_final.zip,0.7520,mate+fold0+fold1. val 0.78이었으나 fold누수로 리더보드 하락. 채택 안함
