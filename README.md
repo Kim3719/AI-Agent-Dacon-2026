@@ -1,250 +1,86 @@
-# AI-Agent-Dacon-2026
+# AI Agent Action Prediction — My First Competition Journey
 
-[![Competition](https://img.shields.io/badge/DACON-AI%20Agent%20Action%20Prediction-blue)](https://dacon.io/competitions/official/236694/overview/description)
-![Status](https://img.shields.io/badge/status-team%20workflow%20setup-lightgrey)
-![Python](https://img.shields.io/badge/python-3.10%2B-3776AB)
-![License](https://img.shields.io/badge/license-MIT-green)
+> 첫 AI 경진대회에서 `0.6XXX`의 초기 제출로 시작해, 최종 Public Macro-F1 `0.7776644`에 도달하기까지의 문제 해결 기록
 
-DACON AI Agent Action Prediction 대회를 위한 팀 공식 저장소입니다.
+이 프로젝트는 완성된 최종 코드만 전시하는 대회 저장소가 아닙니다. 처음 참가한 AI 대회에서 무엇을 몰랐고, 어떤 가설을 세웠으며, 어떤 실험이 실패했고, 그 실패가 다음 판단을 어떻게 바꾸었는지를 기록한 **성장형 연구 저장소**입니다.
 
-이 저장소의 목표는 단순합니다.
-
-> 팀원들은 각자 자유롭게 실험하고, Main Repository에는 다른 팀원이 이해할 수 있는 변경사항과 좋은 결과만 Pull Request로 올립니다.
-
-현재 이 저장소는 **팀 협업 구조를 세팅한 단계**입니다. 아직 확정된 최고 모델, 검증 점수, 제출 점수는 없습니다.
-
-## 목차
-
-- [이 저장소는 무엇인가](#이-저장소는-무엇인가)
-- [팀 운영 방식](#팀-운영-방식)
-- [개인 Repository 사용 방식](#개인-repository-사용-방식)
-- [폴더 구조](#폴더-구조)
-- [팀원이 작업하는 순서](#팀원이-작업하는-순서)
-- [실험 기록 방식](#실험-기록-방식)
-- [PR 작성 방식](#pr-작성-방식)
-- [매일 Best Model merge 방식](#매일-best-model-merge-방식)
-- [팀원에게 공유할 짧은 안내문](#팀원에게-공유할-짧은-안내문)
-
-## 이 저장소는 무엇인가
-
-이 저장소는 팀의 공식 기준 저장소입니다.
-
-들어오는 내용:
-
-- 팀이 같이 사용할 코드
-- 의미 있는 실험 결과
-- 제출 파일 기록
-- 매일 best model 판단에 필요한 정보
-- 팀원이 이해할 수 있는 PR 설명
-
-들어오면 안 되는 내용:
-
-- 개인 실험 중간 산출물
-- 설명 없는 코드
-- 대용량 원본 데이터
-- 큰 모델 파일
-- 본인 컴퓨터에서만 되는 임시 코드
-
-## 팀 운영 방식
-
-브랜치는 아래처럼 사용합니다.
-
-| 브랜치 | 역할 |
-| --- | --- |
-| `main` | 팀 공식 안정 브랜치입니다. 매일 가장 좋은 모델 또는 팀 공통 변경만 들어옵니다. |
-| `experiment/*` | 실험용 브랜치입니다. 예: `experiment/EXP001-baseline` |
-| `feature/*` | 기능 개발 브랜치입니다. 예: `feature/data-loader` |
-| `docs/*` | 문서 수정 브랜치입니다. 예: `docs/update-readme` |
-| `fix/*` | 버그 수정 브랜치입니다. 예: `fix/submission-format` |
-
-중요 규칙:
-
-- `main`에 직접 push하지 않습니다.
-- 작업은 개인 레포 또는 새 브랜치에서 합니다.
-- Main Repository에는 PR로 올립니다.
-- PR에는 직접 요약 또는 AI 요약을 붙입니다.
-
-## 개인 Repository 사용 방식
-
-팀원 개인 레포는 자유 실험 공간입니다.
-
-예상 레포 이름:
-
-| 팀원 | 개인 레포 이름 예시 |
-| --- | --- |
-| HAK | `AI-Agent-Dacon-2026-HAK` |
-| SEOK | `AI-Agent-Dacon-2026-SEOK` |
-| JUN | `AI-Agent-Dacon-2026-JUN` |
-| HEUN | `AI-Agent-Dacon-2026-HEUN` |
-| YOUNG | `AI-Agent-Dacon-2026-YOUNG` |
-
-개인 레포에서는 자유롭게 해도 됩니다.
-
-- 실패한 실험
-- 임시 노트북
-- 여러 모델 테스트
-- 정리 전 코드
-
-Main Repository에 올릴 때만 팀원이 이해할 수 있게 정리합니다.
-
-## 폴더 구조
+프로젝트의 모든 핵심 실험은 아래 질문으로 설명합니다.
 
 ```text
-AI-Agent-Dacon-2026/
-|-- README.md
-|-- CONTRIBUTING.md
-|-- requirements.txt
-|-- .github/
-|   |-- PULL_REQUEST_TEMPLATE.md
-|   `-- ISSUE_TEMPLATE/
-|       |-- bug_report.md
-|       |-- experiment.md
-|       |-- analysis.md
-|       `-- todo.md
-|-- configs/
-|   |-- README.md
-|   `-- exp_template.yaml
-|-- data/
-|   `-- README.md
-|-- experiments/
-|   |-- README.md
-|   `-- experiment_log.csv
-|-- scripts/
-|   |-- README.md
-|   |-- run_train.py
-|   |-- run_predict.py
-|   |-- make_submission.py
-|   `-- register_experiment.py
-|-- submissions/
-|   |-- README.md
-|   `-- submission_log.csv
-|-- reports/
-|   |-- README.md
-|   `-- daily/
-|       |-- README.md
-|       `-- YYYY-MM-DD_template.md
-|-- models/
-|   `-- README.md
-`-- logs/
-    `-- README.md
+어떤 문제가 있었는가
+        ↓
+왜 이 방법을 선택했는가
+        ↓
+어떻게 적용했는가
+        ↓
+결과가 어땠는가
+        ↓
+왜 성공하거나 실패했는가
+        ↓
+다음에는 어떻게 활용할 것인가
 ```
 
-## 각 폴더가 하는 일
+복잡한 방법을 많이 사용했다는 사실보다, **문제와 방법과 결과를 연결하는 과정**을 보여주는 것이 이 저장소의 목표입니다.
 
-| 폴더 | 역할 |
-| --- | --- |
-| `.github/` | PR 템플릿과 Issue 템플릿을 저장합니다. GitHub에서 PR/Issue를 만들 때 자동으로 양식이 뜹니다. |
-| `configs/` | 실험 설정 파일을 저장합니다. 어떤 모델, 어떤 피처, 어떤 seed를 썼는지 남기는 곳입니다. |
-| `data/` | 대회 데이터를 로컬에서 둘 위치를 설명합니다. 원본 데이터는 GitHub에 올리지 않습니다. |
-| `experiments/` | 중요한 실험 결과를 한 줄씩 기록합니다. 긴 보고서 대신 `experiment_log.csv`를 사용합니다. |
-| `scripts/` | 팀원이 실행할 명령어 파일을 둡니다. 현재는 학습/예측/제출/실험기록용 기본 틀입니다. |
-| `submissions/` | DACON 제출 기록을 관리합니다. 어떤 실험에서 나온 제출인지 추적합니다. |
-| `reports/` | 매일 best model을 정할 때 필요한 짧은 일일 기록을 남깁니다. |
-| `models/` | 모델 파일 관리 위치입니다. 큰 모델 파일은 GitHub에 올리지 않고 설명만 남깁니다. |
-| `logs/` | 실행 로그 위치입니다. 긴 로그는 올리지 않고 중요한 내용만 요약합니다. |
+## 프로젝트 한눈에 보기
 
-## 팀원이 작업하는 순서
+| 항목 | 내용 |
+|---|---|
+| 과제 | AI 코딩 에이전트의 다음 행동 14개 중 하나 예측 |
+| 평가 지표 | Macro-F1 |
+| 초기 제출 | `0.6XXX` |
+| 확인된 초기 연구 Baseline | Validation Macro-F1 `0.7412` |
+| 최종 결과 | Public Macro-F1 `0.7776644` |
+| 주요 Backbone | XLM-RoBERTa Base / Large |
+| 핵심 개선 | 입력 표현, 세션 기반 검증, Knowledge Distillation, FGM, LLRD, 다양성 기반 Ensemble |
+| 핵심 실패 | Validation leakage, threshold 과적합, 입력 불일치, OOF teacher, model soup, 과도한 구조 복잡화 |
 
-처음 한 번:
+`0.6XXX`는 초기 제출 성능을 나타냅니다. 원본 제출 로그에서 정확한 소수점 값을 아직 확정하지 못했기 때문에 임의의 숫자로 채우지 않았습니다. `0.7412`는 이후 정리된 학습 코드에서 확인된 연구 Baseline의 Validation 점수이므로 두 수치는 같은 평가 구간의 직접 비교값이 아닙니다.
 
-```bash
-git clone https://github.com/Kim3719/AI-Agent-Dacon-2026.git
-cd AI-Agent-Dacon-2026
-pip install -r requirements.txt
-```
+## 연구의 흐름
 
-작업할 때:
+1. 첫 제출에서 `0.6XXX`를 확인하고 문제와 데이터 구조를 다시 살펴봤습니다.
+2. XLM-R 기반 Baseline을 만들고, 네 개의 파일 탐색 Action에서 반복되는 혼동을 발견했습니다.
+3. 입력 순서, History, 이전 행동, Open Files와 같은 정보를 여러 방식으로 표현했습니다.
+4. 계층 분류, Contrastive Loss, Gating, Stacking 등 다양한 아이디어를 시험했지만 복잡성이 성능을 보장하지 않았습니다.
+5. 높은 Validation 점수 일부가 세션 누수와 선택 편향에서 비롯될 수 있음을 발견했습니다.
+6. Large 모델의 지식을 Base 모델에 전달하기 위해 Knowledge Distillation을 적용했습니다.
+7. Label noise에 덜 흔들리는 학습을 위해 FGM과 LLRD를 적용했습니다.
+8. 가장 높은 단일 점수보다 서로 다르게 틀리는 모델을 선택해 최종 Ensemble을 구성했습니다.
+9. 성공과 실패를 다음 프로젝트에서 재사용할 수 있는 연구 원칙으로 정리했습니다.
 
-```bash
-git checkout main
-git pull origin main
-git checkout -b experiment/EXP001-baseline
-```
-
-작업 후:
-
-```bash
-git status
-git add .
-git commit -m "exp: add EXP001 baseline summary"
-git push origin experiment/EXP001-baseline
-```
-
-그다음 GitHub에서 PR을 만듭니다.
-
-## 실험 기록 방식
-
-중요한 실험은 [experiments/experiment_log.csv](experiments/experiment_log.csv)에 한 줄로 기록합니다.
-
-긴 문서를 매번 쓰지 않아도 됩니다.
-
-기록 예시:
-
-```csv
-EXP001,2026-07-02,HAK,experiment/EXP001-baseline,TF-IDF LR,current_prompt,0.7123,0.8012,TBD,첫 baseline 실험,TBD
-```
-
-실험 기록을 자동으로 추가하고 싶으면 아래 명령을 사용할 수 있습니다.
-
-```bash
-python scripts/register_experiment.py --experiment-id EXP001 --date 2026-07-02 --owner HAK --branch experiment/EXP001-baseline --model "TF-IDF LR" --features current_prompt --validation-f1 TBD --accuracy TBD --public-score TBD --summary "첫 baseline 실험"
-```
-
-## PR 작성 방식
-
-PR에는 긴 보고서를 쓰지 않습니다.
-
-대신 아래 중 하나를 적습니다.
-
-- 본인이 직접 쓴 변경 요약
-- AI에게 변경사항을 요약시켜 받은 내용
-
-AI에게 요약을 부탁할 때는 이렇게 물어보면 됩니다.
+## 저장소 구조
 
 ```text
-아래 git diff를 보고 PR에 넣을 변경 요약을 한국어로 짧게 작성해줘.
-팀원이 이해할 수 있게 무엇을 바꿨고, 왜 바꿨고, 실행 방법이 있는지 정리해줘.
+.
+├── 00_START_HERE/                 # 저장소의 목적과 전체 지도
+├── 01_PROBLEM_AND_DATA/           # 문제, 데이터, 평가 지표, 제약
+├── 02_BASELINE/                   # 초기 제출과 첫 연구 Baseline
+├── 03_INPUT_AND_FEATURES/         # 입력 구성과 Feature 실험
+├── 04_ERROR_ANALYSIS/             # 취약 클래스와 오답 분석
+├── 05_VALIDATION_AND_INCIDENTS/   # 누수, 과적합, 제출 사고와 재발 방지
+├── 06_MODELING_EXPERIMENTS/       # KD, Gating, OOF, Soup 등 모델 실험
+├── 07_ROBUST_TRAINING/            # FGM, LLRD, noise-aware learning
+├── 08_ENSEMBLE_AND_FINAL/         # 다양성 기반 앙상블과 최종 결과
+├── 09_CODE_EVOLUTION/             # 10차~29차 코드 발전 과정
+├── 10_EXPERIMENTS/                # 실험 Registry와 공통 기록 양식
+├── 12_LESSONS_AND_FUTURE/         # 첫 대회가 다음 연구의 거름이 된 이유
+└── references/                    # 논문, 기술 문서, 공개 구현 출처
 ```
 
-PR 템플릿은 [.github/PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md)에 있습니다.
+## 가장 중요한 결론
 
-## 매일 Best Model merge 방식
+- 높은 점수보다 먼저 **그 점수를 믿을 수 있는지** 확인해야 합니다.
+- 실패한 실험은 버릴 코드가 아니라 다음 가설을 만드는 데이터입니다.
+- 단일 모델의 성능과 Ensemble 구성원으로서의 가치는 다를 수 있습니다.
+- 학습 코드와 추론 코드의 정합성은 모델 구조만큼 중요합니다.
+- 유명한 방법도 문제와 데이터에 맞지 않으면 실패합니다.
+- 첫 프로젝트의 가치는 결과 하나보다, 다음 프로젝트에서도 반복 사용할 수 있는 판단 기준을 남기는 데 있습니다.
 
-매일 마지막에 팀이 PR과 실험 기록을 보고 하나를 정합니다.
+자세한 회고와 후속 연구 계획은 [`12_LESSONS_AND_FUTURE/README.md`](12_LESSONS_AND_FUTURE/README.md)에서 설명합니다.
 
-main에 merge 가능한 것:
+## 기여와 출처
 
-- 오늘 기준 validation score가 가장 좋은 모델
-- public score가 개선된 모델
-- 점수는 비슷하지만 더 안정적이고 재현 쉬운 모델
-- 제출 형식 오류 같은 중요한 수정
+실험 방향과 적용 아이디어의 대부분은 프로젝트 수행 과정에서 제가 제안하고 팀과 함께 검토했습니다. 논문·공식 기술 문서·공개 구현은 방법의 배경을 이해하고 구현을 점검하는 참고자료로 사용했습니다. 원래 논문의 방법을 그대로 재현한 경우와 프로젝트 상황에 맞게 직접 변형한 부분을 문서에서 구분합니다.
 
-main에 merge하지 않는 것:
-
-- 설명 없는 모델 변경
-- 실행 방법이 없는 코드
-- 점수가 불명확한 실험
-- 개인 실험 중간 결과
-
-하루 기록은 [reports/daily/YYYY-MM-DD_template.md](reports/daily/YYYY-MM-DD_template.md)를 복사해서 작성합니다.
-
-## 팀원에게 공유할 짧은 안내문
-
-아래 문장을 그대로 팀원에게 보내면 됩니다.
-
-```text
-이 저장소는 팀 공식 Main Repository입니다.
-각자 개인 레포에서는 자유롭게 실험해도 됩니다.
-하지만 Main Repository에는 좋은 결과나 팀이 같이 쓸 코드만 PR로 올려주세요.
-
-작업할 때는 main에 직접 push하지 말고 새 브랜치를 만들어주세요.
-예: experiment/EXP001-baseline, feature/data-loader
-
-PR을 만들 때는 무엇을 바꿨는지 짧게 적어주세요.
-직접 적어도 되고, AI에게 변경사항을 요약시켜 붙여넣어도 됩니다.
-
-실험 결과가 있으면 experiments/experiment_log.csv에 한 줄로 기록해주세요.
-DACON 제출을 했다면 submissions/submission_log.csv에도 기록해주세요.
-
-매일 팀이 PR과 점수를 확인해서 가장 좋은 모델만 main에 merge합니다.
-```
+이 저장소의 문서와 코드는 프로젝트 기록을 바탕으로 계속 보완됩니다. 확인되지 않은 점수나 유실된 버전은 추측하여 채우지 않습니다.

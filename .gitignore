@@ -1,35 +1,38 @@
+# Data and model artifacts
+data/
+models/
+checkpoints/
+artifacts/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.npy
+*.npz
+
+# Experiment outputs
+outputs/
+wandb/
+mlruns/
+*.log
+
 # Python
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-
-# Environments
-.env
 .venv/
 venv/
 
-# Data and model artifacts
-data/raw/
-data/interim/
-data/processed/
-models/*
-!models/.gitkeep
-!models/README.md
-logs/*
-!logs/.gitkeep
-!logs/README.md
-
-# Submission files can be tracked selectively.
-# 제출 로그 CSV와 README는 올리고, 실제 제출 파일은 필요할 때만 올립니다.
-submissions/*.csv
-!submissions/submission_log.csv
-submissions/*.zip
-
-# Notebooks
+# Notebooks and editors
 .ipynb_checkpoints/
+.vscode/
+.idea/
 
-# OS
+# Secrets and operating-system files
+.env
+.env.*
+!.env.example
 .DS_Store
 Thumbs.db
